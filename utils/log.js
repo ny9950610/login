@@ -11,12 +11,13 @@ const myFormat = printf(({ timestamp, level, message }) => {
     return `${timestamp} [${level}]: ${message}`;
 });
 
+// 設定logger輸出
 const logger = winston.createLogger({
     level: 'info',
     format: combine(timestamp(), myFormat),
     transports: [
-        new winston.transports.Console(),
-        new winston.transports.DailyRotateFile(dailyRotateTransports)
+        new winston.transports.Console(), // console輸出
+        new winston.transports.DailyRotateFile(dailyRotateTransports) // 文件輸出
     ]
 });
 
